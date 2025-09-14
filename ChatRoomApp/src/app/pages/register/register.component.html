@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Register</h2>
+    <form (ngSubmit)="register()">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" [(ngModel)]="user.username" name="name" required>
+      </div>
+  
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+      </div>
+  
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="user.password" name="password" required>
+      </div>
+  
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
+</div>

@@ -1,0 +1,23 @@
+﻿# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+Debug/
+Release/
+
+# Publish
+*.Publish.xml
+publish/
+
+# Logs
+*.log
+
+# Others
+node_modules/
+.env
