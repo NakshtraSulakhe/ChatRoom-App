@@ -1,5 +1,8 @@
 ﻿using ChatRoom_API.Interface;
+<<<<<<< HEAD
 using ChatRoom_API.Interfecae;
+=======
+>>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 using ChatRoom_API.Service;
 using Microsoft.AspNetCore.SignalR;
 using ChatRoom_API.Hubs;
@@ -37,6 +40,7 @@ namespace ChatRoom_API.Hubs
 
         public override async Task OnConnectedAsync()
         {
+<<<<<<< HEAD
             var httpContext = Context.GetHttpContext();
             var username = httpContext?.Request.Query["username"].ToString();
 
@@ -58,11 +62,62 @@ namespace ChatRoom_API.Hubs
             await Clients.Others.SendAsync("UserJoined", username);
 
             await base.OnConnectedAsync();
+=======
+            try
+            {
+                var httpContext = Context.GetHttpContext();
+                var username = httpContext?.Request.Query["username"].ToString();
+
+                if (string.IsNullOrEmpty(username))
+                {
+                    _logger.LogWarning("Connection rejected. No username found for connection {ConnectionId}", Context.ConnectionId);
+                    await Clients.Caller.SendAsync("ConnectionError", "Username is required");
+                    return;
+                }
+
+                _logger.LogInformation("User {Username} connecting with connection {ConnectionId}", username, Context.ConnectionId);
+                _onlineUserService.AddUser(username, Context.ConnectionId);
+
+                // 🔥 Load chat history
+                try
+                {
+                    var history = await _messageService.GetChatHistory();
+                    await Clients.Caller.SendAsync("LoadChatHistory", history);
+                    _logger.LogDebug("Chat history loaded for user {Username}", username);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error loading chat history for user {Username}", username);
+                    await Clients.Caller.SendAsync("LoadChatHistory", new List<ChatMessage>());
+                }
+
+                // 👥 Update online users
+                try
+                {
+                    var onlineUsers = _onlineUserService.GetOnlineUsers();
+                    await Clients.All.SendAsync("UpdateUserList", onlineUsers);
+                    await Clients.Others.SendAsync("UserJoined", username);
+                    _logger.LogInformation("User {Username} joined. Online users: {OnlineUsers}", username, string.Join(", ", onlineUsers));
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error updating user list for user {Username}", username);
+                }
+
+                await base.OnConnectedAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in OnConnectedAsync for connection {ConnectionId}", Context.ConnectionId);
+                await Clients.Caller.SendAsync("ConnectionError", "An error occurred during connection");
+            }
+>>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
         }
 
 
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
+<<<<<<< HEAD
             var username = _onlineUserService.GetUsernameByConnectionId(Context.ConnectionId);
             if (!string.IsNullOrEmpty(username))
             {
@@ -77,6 +132,41 @@ namespace ChatRoom_API.Hubs
             }
 
             await base.OnDisconnectedAsync(exception);
+=======
+            try
+            {
+                var username = _onlineUserService.GetUsernameByConnectionId(Context.ConnectionId);
+                if (!string.IsNullOrEmpty(username))
+                {
+                    _onlineUserService.RemoveUser(Context.ConnectionId);
+                    _logger.LogInformation("User {Username} disconnected ({ConnectionId})", username, Context.ConnectionId);
+
+                    try
+                    {
+                        var onlineUsers = _onlineUserService.GetOnlineUsers();
+                        _logger.LogInformation("Online Users after disconnect: {OnlineUsers}", string.Join(", ", onlineUsers));
+
+                        await Clients.All.SendAsync("UpdateUserList", onlineUsers);
+                        await Clients.Others.SendAsync("UserLeft", username);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "Error updating user list after disconnect for user {Username}", username);
+                    }
+                }
+                else
+                {
+                    _logger.LogWarning("Disconnected user not found in connection mapping for connection {ConnectionId}", Context.ConnectionId);
+                }
+
+                await base.OnDisconnectedAsync(exception);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in OnDisconnectedAsync for connection {ConnectionId}", Context.ConnectionId);
+                await base.OnDisconnectedAsync(exception);
+            }
+>>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
         }
 
         // ======= Public Message =======

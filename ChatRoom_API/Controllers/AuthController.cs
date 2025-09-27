@@ -8,7 +8,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using ChatRoom_API.Hubs;
+<<<<<<< HEAD
 using ChatRoom_API.Interfecae;
+=======
+using ChatRoom_API.Interface;
+>>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace ChatRoom_API.Controllers

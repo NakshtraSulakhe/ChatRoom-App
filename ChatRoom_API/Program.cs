@@ -1,7 +1,10 @@
 ﻿using ChatRoom_API.Data;
 using ChatRoom_API.Hubs;
 using ChatRoom_API.Interface;
+<<<<<<< HEAD
 using ChatRoom_API.Interfecae;
+=======
+>>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 using ChatRoom_API.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;

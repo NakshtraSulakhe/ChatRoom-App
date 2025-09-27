@@ -24,9 +24,15 @@
     <!-- Messages -->
     <div class="messages" #chatMessages>
       <ng-container *ngFor="let msg of messages">
+<<<<<<< HEAD
         <div class="message-wrapper" [ngClass]="msg.isMine ? 'mine' : 'other'">
           <div class="message-content">
             <span class="username" *ngIf="!msg.isMine">{{ msg.username }}</span>
+=======
+        <div class="message-wrapper" [ngClass]="msg.isMine ? 'mine' : 'other'" [title]="'From: ' + msg.username + ', Is mine: ' + msg.isMine">
+          <div class="message-content">
+            <span class="username">{{ msg.username }}</span>
+>>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
             <span class="text">{{ msg.text }}</span>
             <span class="timestamp">{{
               msg.timestamp | date : "shortTime"
@@ -36,7 +42,11 @@
       </ng-container>
 
       <div *ngIf="typingUsers.size > 0" class="typing">
+<<<<<<< HEAD
         <span *ngFor="let user of typingUsers">{{ user }} is typing...</span>
+=======
+        <span *ngFor="let user of typingUsers; let last = last">{{ user }}</span>
+>>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
       </div>
     </div>
 

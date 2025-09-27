@@ -19,11 +19,21 @@ export class ChatService {
   private chatHistorySubject = new BehaviorSubject<any[]>([]);
   chatHistory$ = this.chatHistorySubject.asObservable();
 
+<<<<<<< HEAD
+=======
+  private typingUsersSubject = new BehaviorSubject<Set<string>>(new Set());
+  typingUsers$ = this.typingUsersSubject.asObservable();
+
+>>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
   constructor(private _authService: AuthService) {}
 
   startConnection(username: string) {
     this.hubConnection = new signalR.HubConnectionBuilder()
+<<<<<<< HEAD
       .withUrl(this.hubUrl, {
+=======
+      .withUrl(`${this.hubUrl}?username=${encodeURIComponent(username)}`, {
+>>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
         accessTokenFactory: () => localStorage.getItem('token') || ''
       })
       .withAutomaticReconnect()
@@ -72,6 +82,23 @@ export class ChatService {
     this.hubConnection.on('UserLeft', (user: string) => {
       console.log(`👋 ${user} left`);
     });
+<<<<<<< HEAD
+=======
+
+    this.hubConnection.on('UserTyping', (user: string) => {
+      console.log(`⌨️ ${user} is typing`);
+      const currentTypingUsers = new Set(this.typingUsersSubject.value);
+      currentTypingUsers.add(user);
+      this.typingUsersSubject.next(currentTypingUsers);
+    });
+
+    this.hubConnection.on('UserStoppedTyping', (user: string) => {
+      console.log(`⏹️ ${user} stopped typing`);
+      const currentTypingUsers = new Set(this.typingUsersSubject.value);
+      currentTypingUsers.delete(user);
+      this.typingUsersSubject.next(currentTypingUsers);
+    });
+>>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
   }
 
   stopConnection() {
