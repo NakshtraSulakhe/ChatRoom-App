@@ -13,11 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-<<<<<<< HEAD
-using ChatRoom_API.Interfecae;
-=======
 using ChatRoom_API.Interface;
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 using ChatRoom_API.Service;
 
 namespace ChatRoom_API.Controllers

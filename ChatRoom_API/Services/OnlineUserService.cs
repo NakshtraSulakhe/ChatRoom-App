@@ -1,49 +1,31 @@
-﻿using System.Collections.Concurrent;
-<<<<<<< HEAD
-using ChatRoom_API.Interfecae;
-=======
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Extensions.Logging;
 using ChatRoom_API.Interface;
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 
-namespace ChatRoom_API.Service
+namespace ChatRoom_API.Services
 {
     public class OnlineUserService : IOnlineUserService
     {
         // username → set of connectionIds
         private readonly ConcurrentDictionary<string, HashSet<string>> _userConnections = new(StringComparer.OrdinalIgnoreCase);
-
         private readonly ConcurrentDictionary<string, string> _connectionToUser = new(StringComparer.OrdinalIgnoreCase);
 
-<<<<<<< HEAD
-        private readonly ConcurrentBag<string> _typingUsers = new(); // thread-safe typing list
-=======
         // Use ConcurrentDictionary for thread-safe typing users management
         private readonly ConcurrentDictionary<string, DateTime> _typingUsers = new(StringComparer.OrdinalIgnoreCase);
-        
+
         private readonly ILogger<OnlineUserService> _logger;
 
         public OnlineUserService(ILogger<OnlineUserService> logger)
         {
             _logger = logger;
         }
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 
         public void AddUser(string username, string connectionId)
         {
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(connectionId))
-<<<<<<< HEAD
-                return;
-
-            _userConnections.AddOrUpdate(username,
-                _ => new HashSet<string> { connectionId },
-                (_, existingSet) =>
-                {
-                    lock (existingSet) existingSet.Add(connectionId);
-                    return existingSet;
-                });
-
-            _connectionToUser[connectionId] = username;
-=======
             {
                 _logger.LogWarning("Attempted to add user with empty username or connectionId");
                 return;
@@ -66,29 +48,11 @@ namespace ChatRoom_API.Service
             {
                 _logger.LogError(ex, "Error adding user {Username} with connection {ConnectionId}", username, connectionId);
             }
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
         }
 
         public void RemoveUser(string connectionId)
         {
             if (string.IsNullOrWhiteSpace(connectionId))
-<<<<<<< HEAD
-                return;
-
-            if (_connectionToUser.TryRemove(connectionId, out var username))
-            {
-                if (_userConnections.TryGetValue(username, out var connections))
-                {
-                    lock (connections)
-                    {
-                        connections.Remove(connectionId);
-                        if (connections.Count == 0)
-                        {
-                            _userConnections.TryRemove(username, out _);
-                        }
-                    }
-                }
-=======
             {
                 _logger.LogWarning("Attempted to remove user with empty connectionId");
                 return;
@@ -123,7 +87,6 @@ namespace ChatRoom_API.Service
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error removing user with connection {ConnectionId}", connectionId);
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
             }
         }
 
@@ -137,6 +100,7 @@ namespace ChatRoom_API.Service
                 {
                     _connectionToUser.TryRemove(conn, out _);
                 }
+                _logger.LogInformation("Removed all connections for user {Username}", username);
             }
         }
 
@@ -147,7 +111,7 @@ namespace ChatRoom_API.Service
 
         public List<string> GetOnlineUsers()
         {
-            // ✅ Always return distinct usernames
+            // Always return distinct usernames
             return _userConnections.Keys.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
         }
 
@@ -161,11 +125,6 @@ namespace ChatRoom_API.Service
         // ===== Typing indicator =====
         public void AddTypingUser(string username)
         {
-<<<<<<< HEAD
-            if (!_typingUsers.Contains(username))
-            {
-                _typingUsers.Add(username);
-=======
             if (string.IsNullOrWhiteSpace(username))
             {
                 _logger.LogWarning("Attempted to add typing user with empty username");
@@ -180,22 +139,11 @@ namespace ChatRoom_API.Service
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error adding typing user {Username}", username);
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
             }
         }
 
         public void RemoveTypingUser(string username)
         {
-<<<<<<< HEAD
-            lock (_typingUsers)
-            {
-                var updated = _typingUsers.Except(new[] { username }).ToList();
-                while (!_typingUsers.IsEmpty)
-                    _typingUsers.TryTake(out _);
-
-                foreach (var user in updated)
-                    _typingUsers.Add(user);
-=======
             if (string.IsNullOrWhiteSpace(username))
             {
                 _logger.LogWarning("Attempted to remove typing user with empty username");
@@ -212,15 +160,11 @@ namespace ChatRoom_API.Service
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error removing typing user {Username}", username);
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
             }
         }
 
         public List<string> GetTypingUsers()
         {
-<<<<<<< HEAD
-            return _typingUsers.ToList();
-=======
             try
             {
                 // Remove users who have been typing for more than 5 seconds (stale entries)
@@ -242,7 +186,6 @@ namespace ChatRoom_API.Service
                 _logger.LogError(ex, "Error getting typing users");
                 return new List<string>();
             }
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
         }
     }
 }
