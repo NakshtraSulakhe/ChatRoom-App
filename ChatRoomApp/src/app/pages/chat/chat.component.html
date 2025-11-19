@@ -15,50 +15,59 @@
     </ul>
   </div>
 
-  <div class="chat-box" #chatContainer>
-    <!-- Toast notification -->
-    <div class="toast-container" *ngIf="notification">
-      <div class="toast">{{ notification }}</div>
+  <div class="header">
+    <span class="welcome">Welcome to Chat Room!</span>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+
+  <button class="theme-toggle" (click)="toggleTheme()">Dark Mode</button>
+
+  <div class="chat-container">
+    <div class="online-users">
+      <h3>Online Users</h3>
+      <ul>
+        <li *ngFor="let user of onlineUsers">
+          {{ user === username ? user + ' (You)' : user }}
+        </li>
+      </ul>
     </div>
 
-    <!-- Messages -->
-    <div class="messages" #chatMessages>
-      <ng-container *ngFor="let msg of messages">
-<<<<<<< HEAD
-        <div class="message-wrapper" [ngClass]="msg.isMine ? 'mine' : 'other'">
-          <div class="message-content">
-            <span class="username" *ngIf="!msg.isMine">{{ msg.username }}</span>
-=======
-        <div class="message-wrapper" [ngClass]="msg.isMine ? 'mine' : 'other'" [title]="'From: ' + msg.username + ', Is mine: ' + msg.isMine">
-          <div class="message-content">
-            <span class="username">{{ msg.username }}</span>
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
-            <span class="text">{{ msg.text }}</span>
-            <span class="timestamp">{{
-              msg.timestamp | date : "shortTime"
-            }}</span>
-          </div>
-        </div>
-      </ng-container>
+    <div class="chat-box" #chatContainer>
+      <!-- Toast notification -->
+      <div class="toast-container" *ngIf="notification">
+        <div class="toast">{{ notification }}</div>
+      </div>
 
-      <div *ngIf="typingUsers.size > 0" class="typing">
-<<<<<<< HEAD
-        <span *ngFor="let user of typingUsers">{{ user }} is typing...</span>
-=======
-        <span *ngFor="let user of typingUsers; let last = last">{{ user }}</span>
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
+      <!-- Messages -->
+      <div class="messages" #chatMessages>
+        <ng-container *ngFor="let msg of messages">
+          <div
+            class="message-wrapper"
+            [ngClass]="msg.isMine ? 'mine' : 'other'"
+            [title]="'From: ' + msg.username + ', Is mine: ' + msg.isMine"
+          >
+            <div class="message-content">
+              <span class="username" *ngIf="!msg.isMine">{{ msg.username }}</span>
+              <span class="text">{{ msg.text }}</span>
+              <span class="timestamp">{{ msg.timestamp | date : 'shortTime' }}</span>
+            </div>
+          </div>
+        </ng-container>
+
+        <div *ngIf="typingUsers && typingUsers.size > 0" class="typing">
+          <span *ngFor="let user of typingUsers">{{ user }} is typing...</span>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="message-input">
+        <input
+          [(ngModel)]="newMessage"
+          placeholder="Type a message..."
+          (input)="onTyping()"
+          (keyup.enter)="sendMessage()"
+        />
+        <button (click)="sendMessage()">Send</button>
       </div>
     </div>
-
-    <!-- Input -->
-    <div class="message-input">
-      <input
-        [(ngModel)]="newMessage"
-        placeholder="Type a message..."
-        (input)="onTyping()"
-        (keyup.enter)="sendMessage()"
-      />
-      <button (click)="sendMessage()">Send</button>
-    </div>
   </div>
-</div>

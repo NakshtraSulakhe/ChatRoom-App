@@ -9,47 +9,16 @@
 
 .header {
   position: absolute;
-<<<<<<< HEAD
-  top: 10px;
-=======
   top: 15px;
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 15px;
-<<<<<<< HEAD
-=======
   z-index: 1000;
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
-}
-
 .welcome {
-  font-size: 22px;
   font-weight: bold;
   color: white;
-<<<<<<< HEAD
-  background: rgba(176, 175, 185, 0.6);
-  padding: 8px 16px;
-  border-radius: 20px;
-}
-
-.logout-btn {
-  padding: 10px 20px;
-  background: #ff4b5c;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.logout-btn:hover {
-  background: #ff1e3c;
-  transform: scale(1.05);
-=======
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   padding: 12px 20px;
@@ -76,20 +45,10 @@
   background: linear-gradient(135deg, #ff1e3c, #ff4b5c);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(255, 75, 92, 0.4);
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 }
 
 .theme-toggle {
   position: absolute;
-<<<<<<< HEAD
-  top: 10px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-=======
   top: 15px;
   right: 20px;
   background: rgba(255, 255, 255, 0.15);
@@ -109,7 +68,6 @@
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 }
 
 .popup-toast {
@@ -160,40 +118,19 @@
   padding: 20px;
   text-align: center;
   border-right: 2px solid rgba(255, 255, 255, 0.2);
-<<<<<<< HEAD
-=======
   overflow-y: auto;
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 }
 
 .online-users h3 {
   margin-bottom: 15px;
   font-size: 18px;
-<<<<<<< HEAD
-=======
   color: #ffffff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 }
 
 .online-users ul {
   list-style: none;
   padding: 0;
-<<<<<<< HEAD
-}
-
-.online-users li {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 8px;
-  margin: 5px 0;
-  border-radius: 10px;
-  font-size: 14px;
-  transition: 0.3s;
-}
-
-.online-users li:hover {
-  background: rgba(255, 255, 255, 0.3);
-=======
   margin: 0;
 }
 
@@ -233,7 +170,6 @@
 .online-users::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 2px;
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 }
 
 .chat-box {
@@ -269,41 +205,6 @@
 .messages {
   flex-grow: 1;
   overflow-y: auto;
-<<<<<<< HEAD
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.messages::-webkit-scrollbar {
-  display: none;
-}
-
-.message-content {
-  padding: 8px;
-  margin: 4px 0;
-  border-radius: 8px;
-  max-width: 20rem;
-  word-wrap: break-word;
-  font-size: 14px;
-  position: relative;
-}
-
-.mine {
-  align-self: flex-end;
-}
-
-.mine .message-content {
-  background: linear-gradient(to right, #1cb5e0, #000046);
-}
-
-.other {
-  align-self: flex-start;
-}
-
-.other .message-content {
-  background: rgba(255, 255, 255, 0.3);
-=======
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -326,28 +227,20 @@
 
 .messages::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 }
 
 .username {
   font-size: 12px;
   font-weight: bold;
   display: block;
-<<<<<<< HEAD
-  margin-bottom: 2px;
-=======
   margin-bottom: 4px;
   opacity: 0.9;
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 }
 
 .timestamp {
   font-size: 10px;
   display: block;
   opacity: 0.7;
-<<<<<<< HEAD
-  margin-top: 5px;
-=======
   margin-top: 4px;
   font-style: italic;
 }
@@ -368,15 +261,10 @@
 
 .message-wrapper.other .timestamp {
   text-align: left;
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 }
 
 .typing {
   margin-top: 10px;
-<<<<<<< HEAD
-  color: #ccc;
-  font-style: italic;
-=======
   color: #666;
   font-style: italic;
   font-size: 13px;
@@ -409,69 +297,20 @@
 body.dark-mode .typing {
   color: #ccc;
   background: rgba(255, 255, 255, 0.05);
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 }
 
 .message-input {
   display: flex;
-<<<<<<< HEAD
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 10px;
-=======
   align-items: center;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding: 15px 20px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(5px);
   gap: 12px;
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 }
 
 .message-input input {
   flex-grow: 1;
-<<<<<<< HEAD
-  padding: 10px;
-  font-size: 14px;
-  border: none;
-  border-radius: 20px;
-  outline: none;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
-.message-input input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.message-input button {
-  background: linear-gradient(to right, #1cb5e0, #000046);
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  margin-left: 10px;
-  border-radius: 20px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.message-input button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(to right, #000046, #1cb5e0);
-}
-/* .message-wrapper {
-  display: flex;
-  margin: 5px 0;
-} */
-
-/* .message-wrapper.mine {
-  justify-content: flex-end;
-} */
-
-/* .message-wrapper.other {
-  justify-content: flex-start;
-} */
-=======
   padding: 12px 16px;
   font-size: 14px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -516,7 +355,6 @@ body.dark-mode .typing {
   transform: translateY(0);
 }
 /* Removed conflicting styles - now handled in WhatsApp-style section */
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 
 /* Dark Mode */
 body.dark-mode {
@@ -556,67 +394,6 @@ body.dark-mode .toast {
     height: 100%;
   }
 }
-<<<<<<< HEAD
-.message-wrapper {
-  display: flex;
-  margin: 8px 0;
-  max-width: 70%;
-}
-
-.message-wrapper.mine {
-  margin-left: auto; /* ✅ Push to right */
-  justify-content: flex-end;
-}
-
-
-.message-wrapper.other {
-  margin-right: auto; /* ✅ Push to left */
-  justify-content: flex-start;
-}
-
-/* Speech bubble tails */
-.message-content {
-  background: #f1f1f1;
-  padding: 8px 12px;
-  border-radius: 12px;
-  font-size: 14px;
-  display: inline-block;
-  word-wrap: break-word;
-}
-
-.message-wrapper.mine .message-content {
-  background: linear-gradient(to right, #1cb5e0, #000046);
-  color: white;
-}
-
-.message-wrapper.mine .message-content::after {
-  content: '';
-  position: absolute;
-  right: -8px;
-  top: 10px;
-  width: 0;
-  height: 0;
-  border-left: 8px solid #000046;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-}
-
-.message-wrapper.other .message-content {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
-.message-wrapper.other .message-content::after {
-  content: '';
-  position: absolute;
-  left: -8px;
-  top: 10px;
-  width: 0;
-  height: 0;
-  border-right: 8px solid rgba(255, 255, 255, 0.2);
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-=======
 /* WhatsApp-style message bubbles */
 .message-content {
   max-width: 70%;
@@ -664,7 +441,6 @@ body.dark-mode .message-wrapper.mine .message-content {
 body.dark-mode .message-wrapper.other .message-content {
   background: #2a2a2a;
   color: #ffffff;
->>>>>>> a4a5677 (Updated frontend (Angular) and backend (.NET) with new features)
 }
 .avatar {
   width: 32px;
@@ -674,3 +450,4 @@ body.dark-mode .message-wrapper.other .message-content {
   align-self: flex-end;
 }
 
+}
