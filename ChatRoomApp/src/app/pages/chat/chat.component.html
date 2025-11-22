@@ -32,6 +32,7 @@
       </ul>
     </div>
 
+<<<<<<< HEAD
     <div class="chat-box" #chatContainer>
       <!-- Toast notification -->
       <div class="toast-container" *ngIf="notification">
@@ -68,6 +69,22 @@
           (keyup.enter)="sendMessage()"
         />
         <button (click)="sendMessage()">Send</button>
+=======
+    <!-- Messages -->
+    <div class="messages" #chatMessages>
+      <ng-container *ngFor="let msg of messages">
+        <div class="message-wrapper" [ngClass]="msg.isMine ? 'mine' : 'other'" [title]="'From: ' + msg.username + ', Is mine: ' + msg.isMine">
+          <div class="message-content">
+            <span class="username">{{ msg.username }}</span>
+            <span class="text">{{ msg.text }}</span>
+            <span class="timestamp">{{ msg.timestamp | date : "shortTime" }}</span>
+          </div>
+        </div>
+      </ng-container>
+
+      <div *ngIf="typingUsers.size > 0" class="typing">
+        <span *ngFor="let user of typingUsers; let last = last">{{ user }}</span>
+>>>>>>> cf0db47 (frontend changes)
       </div>
     </div>
   </div>

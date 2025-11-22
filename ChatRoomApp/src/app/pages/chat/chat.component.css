@@ -16,6 +16,11 @@
   align-items: center;
   gap: 15px;
   z-index: 1000;
+<<<<<<< HEAD
+=======
+}
+
+>>>>>>> cf0db47 (frontend changes)
 .welcome {
   font-weight: bold;
   color: white;
